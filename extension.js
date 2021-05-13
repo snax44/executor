@@ -63,7 +63,10 @@ function enable() {
         this.locations[position].box = new St.BoxLayout({ style_class: 'panel-button', reactive: true });
 
         this.locations[position].locationClicked = this.locations[position].box.connect(
-            'button-press-event', () => {
+            'button-press-event', (widget, event, user_data) => {
+
+                log(event.get_button());
+
                 this.settings.set_int('location', position);
                 GLib.timeout_add(
                     GLib.PRIORITY_DEFAULT,
